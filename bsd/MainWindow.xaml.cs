@@ -19,6 +19,7 @@ namespace bsd
         public MainWindow()
         {
             InitializeComponent();
+            string a = "";
         }
     }
 }
