@@ -28,6 +28,8 @@
             <Setter Property="Width" Value="200"/>
             <Setter Property="Margin" Value="40"/>
             <Setter Property="Background" Value="{StaticResource Brush}"/>
+            <Setter Property="BorderThickness" Value="0.6"/>
+            <Setter Property="BorderBrush" Value="LightSeaGreen"/>
         </Style>
     </Window.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
