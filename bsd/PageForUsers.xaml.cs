@@ -28,5 +28,12 @@ namespace bsd
         {
 
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var newform = new MainWindow();
+            newform.Show();
+            this.Close();
+        }
     }
 }

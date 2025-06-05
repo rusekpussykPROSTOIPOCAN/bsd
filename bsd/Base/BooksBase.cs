@@ -1,12 +1,14 @@
-﻿using Supabase.Postgrest.Attributes;
+﻿using Supabase;
+using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
+
 
 namespace bsd.Base
 {
     [Table("Books")]
     public class BooksBase : BaseModel
     {
-        [PrimaryKey("Id",true)]
+        [PrimaryKey("Id",false)]
         public int Id { get; set; }
         [Column("Autor")]
         public string Autor { get; set; }

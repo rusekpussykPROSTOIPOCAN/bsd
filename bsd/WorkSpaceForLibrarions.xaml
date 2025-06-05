@@ -59,15 +59,16 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        <Button  VerticalAlignment="Center" Content="Выход" Click="Button_Click"/>
 
         </StackPanel>
 
         <ListView Margin="8" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4">
-            <ListView.ItemTemplate >
-                <DataTemplate>
-
-                </DataTemplate>
-            </ListView.ItemTemplate>
+            <ListView.View>
+                <GridView>
+                  
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 
