@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bsd"
         mc:Ignorable="d"
-        Title="WorkSpaceForLibrarions" Height="321" Width="430">
+        Title="WorkSpaceForLibrarions" Height="397" Width="594">
     <Window.Resources>
 
         <Style TargetType="Label">
