@@ -4,9 +4,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:bsd"
+       
         mc:Ignorable="d"
         Title="WorkSpaceForLibrarions" Height="397" Width="594">
+
     <Window.Resources>
 
         <Style TargetType="Label">
@@ -45,9 +46,11 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Content="Добавить читателя" Grid.Column="2" Grid.Row="0" Margin="6,5,5,5"/>
+
+        <Button Content="Добавить читателя" Grid.Column="2" Grid.Row="0" Margin="6,5,5,5" Click="Button_Click_2" Height="20" VerticalAlignment="Bottom"/>
         <Button Name="BookDeliveryBtn" Click="BookDelivery_Click" Content="Выдача книги" Grid.Column="3" Grid.Row="0" Margin="5,5,6,5"/>
         <Button Content="Просмотр истории" Grid.Column="4" Grid.Row="0" Margin="4,5,5,5"/>
+      
         <TextBox  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Margin="6,5,6,5"/>
         <Button Content="поиск" Grid.Row="1"  Grid.Column="5" Margin="4,5,5,5"/>
         <Button Content="Создать отчет" Grid.Column="5" />
@@ -59,17 +62,25 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        <Button  VerticalAlignment="Center" Content="Выход" Click="Button_Click"/>
+            <Button  VerticalAlignment="Center" Content="Выход" Click="Button_Click"/>
 
         </StackPanel>
 
-        <ListView Margin="8" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4">
-            <ListView.View>
-                <GridView>
-                  
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4">
+            <DataGrid ItemsSource="{Binding books}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Autor" Binding="{Binding Autor}"/>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                    <DataGridTextColumn Header="Year" Binding="{Binding Year}"/>
+                    <DataGridTextColumn Header="Chapter" Binding="{Binding Chapter}"/>
+                    <DataGridTextColumn Header="InventaryNum" Binding="{Binding InventaryNum}"/>
+                    <DataGridTextColumn Header="condition" Binding="{Binding condition}"/>
+                    <DataGridTextColumn Header="CountBooking" Binding="{Binding CountBooking}"/>
+                    <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 
 
