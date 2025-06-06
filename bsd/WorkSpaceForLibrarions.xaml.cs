@@ -1,18 +1,10 @@
 ﻿using bsd.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 using System.Collections.ObjectModel;
+
+using System.Windows;
+
+using System.Windows.Controls;
 
 namespace bsd
 {
@@ -21,7 +13,8 @@ namespace bsd
     /// </summary>
     public partial class WorkSpaceForLibrarions : Window
     {
-        public ObservableCollection<BooksBase> books { get; set; } = new ObservableCollection<BooksBase>();
+        public static ObservableCollection<BooksBase> books { get; set; } = new ObservableCollection<BooksBase>();
+        public static ObservableCollection<BooksBase> _allB { get; set; } = new ObservableCollection<BooksBase>();
         public WorkSpaceForLibrarions()
         {
             InitializeComponent();
@@ -29,7 +22,7 @@ namespace bsd
             LoadBooks();
         }
 
-       private async void LoadBooks()
+       public static async void LoadBooks()
         {
             try
             {
@@ -38,10 +31,13 @@ namespace bsd
                     != null)
                 {
                     books.Clear();
+                    _allB.Clear();
                     foreach (var book in response.Models)
                     {
                         books.Add(book);
+                        _allB.Add(book);
                     }
+
                 }
                 else
                 {
@@ -51,6 +47,28 @@ namespace bsd
             {
                 Console.WriteLine("");
             }
+        }
+        public static async  void SearchBook( TextBox Search)
+        {
+           
+               if (string.IsNullOrWhiteSpace(Search.Text))
+            {
+                LoadBooks();
+            }
+            else
+            {
+                books.Clear();
+                foreach (var item in _allB)
+                {
+                    if (Search.Text == item.Title || Search.Text == item.Autor || Search.Text == item.ISBN.ToString() || Search.Text == item.condition )
+                    {
+                        books.Add(item);
+                    }
+                }
+            }
+            
+            
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -66,6 +84,7 @@ namespace bsd
             var newform = new BookDelivery();
             newform.Show();
             this.Close();
+        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -79,6 +98,11 @@ namespace bsd
             var newform = new NewUser();
             newform.Show();
 
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            SearchBook(Search);
         }
     }
 }

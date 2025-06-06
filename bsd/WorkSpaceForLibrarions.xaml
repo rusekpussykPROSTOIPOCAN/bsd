@@ -51,8 +51,8 @@
         <Button Name="BookDeliveryBtn" Click="BookDelivery_Click" Content="Выдача книги" Grid.Column="3" Grid.Row="0" Margin="5,5,6,5"/>
         <Button Content="Просмотр истории" Grid.Column="4" Grid.Row="0" Margin="4,5,5,5"/>
       
-        <TextBox  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Margin="6,5,6,5"/>
-        <Button Content="поиск" Grid.Row="1"  Grid.Column="5" Margin="4,5,5,5"/>
+        <TextBox x:Name="Search"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Margin="6,5,6,5"/>
+        <Button Content="поиск" Grid.Row="1"  Grid.Column="5" Margin="4,5,5,5" Click="Button_Click_3"/>
         <Button Content="Создать отчет" Grid.Column="5" />
         <StackPanel Background="WhiteSmoke" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2">
             <ListView  Grid.RowSpan="3">
@@ -67,9 +67,8 @@
         </StackPanel>
 
         <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4">
-            <DataGrid ItemsSource="{Binding books}" AutoGenerateColumns="False">
+            <DataGrid ItemsSource="{Binding books}" CanUserSortColumns="True" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Autor" Binding="{Binding Autor}"/>
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
                     <DataGridTextColumn Header="Year" Binding="{Binding Year}"/>
