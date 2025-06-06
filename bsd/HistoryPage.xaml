@@ -7,12 +7,6 @@
         mc:Ignorable="d"
         Title="HistoryPage" Height="450" Width="800">
     <Grid>
-        <ListView>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                   <!--Таблица "история"-->
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <DataGrid ItemsSource="{Binding history}"/>
     </Grid>
 </Window>

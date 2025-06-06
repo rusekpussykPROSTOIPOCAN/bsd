@@ -1,4 +1,5 @@
 ﻿using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace bsd.Base
 {
     [Table("History")]
-    public class History
+    public class History:BaseModel
     {
         [PrimaryKey("id_reader", false)]
         public int Id { get; set; }
