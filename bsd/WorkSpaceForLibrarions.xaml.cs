@@ -60,6 +60,13 @@ namespace bsd
             this.Close();
         }
 
+
+        private void BookDelivery_Click(object sender, RoutedEventArgs e)
+        {
+            var newform = new BookDelivery();
+            newform.Show();
+            this.Close();
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var newform = new HistoryPage();
@@ -71,6 +78,7 @@ namespace bsd
         {
             var newform = new NewUser();
             newform.Show();
+
         }
     }
 }

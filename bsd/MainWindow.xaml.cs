@@ -52,6 +52,7 @@ namespace bsd
                 }
                 else
                 {
+
                     var newform = new WorkSpaceForLibrarions();
                     newform.Show();
                     this.Close();
