@@ -118,12 +118,7 @@ namespace bsd
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var newform = new HistoryPage();
-            newform.Show();
-            
-        }
+      
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
@@ -141,6 +136,12 @@ namespace bsd
         {
 
             SearchBookLike(Search);
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            var newform = new HistoryPage();
+            newform.Show();
         }
     }
 }

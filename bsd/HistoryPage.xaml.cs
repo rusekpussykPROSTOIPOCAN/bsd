@@ -40,7 +40,7 @@ namespace bsd
                     history.Clear();
                     foreach (var story in response.Models)
                     {
-                        
+                        history.Add(story);
                     }
                 }
                 else
