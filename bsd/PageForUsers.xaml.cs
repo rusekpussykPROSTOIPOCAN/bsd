@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bsd.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace bsd
         public PageForUsers()
         {
             InitializeComponent();
+            User user = new User();
+            MessageBox.Show(user.FirstName);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

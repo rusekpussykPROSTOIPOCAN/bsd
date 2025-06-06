@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:bsd"
         mc:Ignorable="d"
-        Title="Выдача книги" Height="397" Width="594">
+        Title="Выдача книги" Height="520" Width="600">
     <Window.Resources>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" x:Key="Brush">
             <GradientStop Offset="0" Color="LightCyan"/>
@@ -18,7 +18,6 @@
             <Setter Property="BorderBrush" Value="LightSeaGreen"/>
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="20"/>
-            <Setter Property="Margin" Value="-480 -325 0 0"/>
         </Style>
         <Style TargetType="TextBox" x:Key="InvalidTextboxes">
             <Setter Property="Width" Value="150"/>
@@ -34,12 +33,90 @@
             <Setter Property="Height" Value="30"/>
             <Setter Property="Width" Value="65"/>
         </Style>
+        <Style TargetType="Label" x:Key="Days">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="120"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="InvalidTextDays">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="20" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="IsReadOnly" Value="True" />
+        </Style>
+        <Style TargetType="Label" x:Key="ChooseBook">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="100"/>
+        </Style>
+        <Style TargetType="Label" x:Key="ChooseReader">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="120"/>
+        </Style>
     </Window.Resources>
     <Grid>
-        <Button Name="BackBtn" VerticalAlignment="Center" Content="Назад" Click="BackBtn_Click"/>
-        <Label Style="{StaticResource DateOfIssue}" Margin="-170 -310 0 0" Content="Дата выдачи"/>
-        <TextBox Style="{StaticResource InvalidTextboxes}" Margin="-170 -270 0 0" Text="{Binding Source={x:Static sys:DateTime.Now},  StringFormat='dd-MM-yy',Mode=OneWay}"/>
-        <Label Style="{StaticResource Worker}" Margin="300 -310 0 0" Content="Работник"/>
-        <TextBox Style="{StaticResource InvalidTextboxes}" Margin="300 -270 0 0" Text=""/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="0" Grid.Row="0" Name="BackBtn" VerticalAlignment="Center" Content="Назад" Click="BackBtn_Click"/>
+        <Label Style="{StaticResource DateOfIssue}" Grid.Column="1" Grid.Row="0" Content="Дата выдачи"/>
+        <TextBox Style="{StaticResource InvalidTextboxes}" Grid.Column="1" Grid.Row="1" Text="{Binding Source={x:Static sys:DateTime.Now},  StringFormat='dd-MM-yy',Mode=OneWay}"/>
+        <Label Style="{StaticResource Worker}" Grid.Column="2" Grid.Row="0" Content="Работник"/>
+        <TextBox Style="{StaticResource InvalidTextboxes}" Grid.Column="2" Grid.Row="1" Text=""/>
+        <Label Style="{StaticResource Days}" Grid.Column="3" Grid.Row="0">
+            <TextBlock>
+                На сколько дней
+                <LineBreak />
+                выдается книга
+            </TextBlock>
+        </Label>
+        <TextBox Style="{StaticResource InvalidTextDays}" Grid.Column="3" Grid.Row="1" Text="30"/>
+        <Label Style="{StaticResource ChooseBook}" Grid.Column="0" Grid.Row="2" Content="Выберите книгу:"/>
+        <TextBox  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="6,5,6,5"/>
+        <Button Grid.Column="4" Grid.Row="2" Content="Найти" Margin=" -80 0 0 0"/>
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Height="150">
+            <DataGrid ItemsSource="{Binding books}" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Индетификатор" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Автор" Binding="{Binding Autor}"/>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Title}"/>
+                    <DataGridTextColumn Header="Год" Binding="{Binding Year}"/>
+                    <DataGridTextColumn Header="Раздел" Binding="{Binding Chapter}"/>
+                    <DataGridTextColumn Header="Инвентарный номер" Binding="{Binding InventaryNum}"/>
+                    <DataGridTextColumn Header="Состояние" Binding="{Binding condition}"/>
+                    <DataGridTextColumn Header="Общее количество выдач" Binding="{Binding CountBooking}"/>
+                    <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Label Style="{StaticResource ChooseReader}" Grid.Row="4" Grid.Column="0" Content="Выберите читателя:"/>
+        <TextBox  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="6,5,6,5"/>
+        <Button Grid.Column="4" Grid.Row="4" Content="Найти" Margin=" -80 0 0 0"/>
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Height="150">
+            <DataGrid ItemsSource="{Binding readers}" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Индетификатор" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Fname}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Lname}"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                    <DataGridTextColumn Header="Серия и номер" Binding="{Binding SeriaAndNum}"/>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Sex}"/>
+                    <DataGridTextColumn Header="Кем выдан" Binding="{Binding IsueByWhom}"/>
+                    <DataGridTextColumn Header="Код подразделение" Binding="{Binding Code}"/>
+                    <DataGridTextColumn Header="Дата выдачи" Binding="{Binding DateOfIssue}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Button Grid.Column="4" Grid.Row="6" Content="Выдать" Margin="20"/>
     </Grid>
 </Window>
