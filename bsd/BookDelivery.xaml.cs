@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bsd.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,25 +16,19 @@ using System.Windows.Shapes;
 namespace bsd
 {
     /// <summary>
-    /// Логика взаимодействия для WorkSpaceForLibrarions.xaml
+    /// Логика взаимодействия для BookDelivery.xaml
     /// </summary>
-    public partial class WorkSpaceForLibrarions : Window
+    public partial class BookDelivery : Window
     {
-        public WorkSpaceForLibrarions()
+        public BookDelivery()
         {
             InitializeComponent();
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            var newform = new MainWindow();
-            newform.Show();
-            this.Close();
-        }
-
-        private void BookDelivery_Click(object sender, RoutedEventArgs e)
-        {
-            var newform = new BookDelivery();
+            var newform = new WorkSpaceForLibrarions();
             newform.Show();
             this.Close();
         }
