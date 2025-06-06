@@ -48,7 +48,7 @@ namespace bsd
                 Console.WriteLine("");
             }
         }
-        public static async  void SearchBook( TextBox Search)
+        public static   void SearchBook( TextBox Search)
         {
            
                if (string.IsNullOrWhiteSpace(Search.Text))
@@ -68,6 +68,38 @@ namespace bsd
             }
             
             
+            
+        }
+        public static   void SearchBookLike( TextBox Search)
+        {
+
+            if (string.IsNullOrWhiteSpace(Search.Text))
+            {
+                LoadBooks();
+            }
+            else
+            {
+                books.Clear();
+                var serch = Search.Text.ToLower();
+                foreach (var item in _allB)
+                {
+                    var pop = new List<string> {
+                        item.ISBN.ToString(),
+                        item.Title,
+                        item.Year.ToString(),
+                        item.Chapter.ToString(),
+                        item.condition,
+                        item.CountBooking.ToString(),
+                        item.Autor
+                    };
+                    if (pop.Any(p => p.ToLower().Contains(serch)))
+                    {
+                        books.Add(item);
+
+                    }
+                }
+
+            }
             
         }
 
@@ -103,6 +135,12 @@ namespace bsd
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             SearchBook(Search);
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+
+            SearchBookLike(Search);
         }
     }
 }
