@@ -1,6 +1,7 @@
-﻿using bsd.Models;
+﻿using bsd.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,24 @@ namespace bsd
     /// </summary>
     public partial class PageForUsers : Window
     {
+        public static ObservableCollection<BooksBase> topbooks {  get; set; }  = new ObservableCollection<BooksBase>();
         public PageForUsers()
         {
             InitializeComponent();
-            User user = new User();
-            MessageBox.Show(user.FirstName);
+         ConvertPhotos();
+           
+        }
+        
+        public async static void ConvertPhotos()
+        {
+           var topbooksGet = await App.SupabaseClient.From<BooksBase>().Order(x=>x.CountBooking, ordering:Supabase.Postgrest.Constants.Ordering.Descending).Limit(3).Get();
+
+
+            foreach (var item in topbooksGet.Models)
+            {
+                topbooks.Add(item);
+            }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

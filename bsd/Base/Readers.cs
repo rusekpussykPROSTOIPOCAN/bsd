@@ -23,7 +23,7 @@ namespace bsd.Base
         [Column("Email")]
         public string Email { get; set; }
         [Column("SeriaAndNum")]
-        public int SeriaAndNum { get; set; }
+        public string SeriaAndNum { get; set; }
         [Column("Sex")]
         public string Sex { get; set; }
         [Column("IsueByWhom")]
@@ -32,6 +32,8 @@ namespace bsd.Base
         public string Code { get; set; }
         [Column("DateOfIssue")]
         public DateTime DateOfIssue { get; set; }
+       
+        
         public override bool Equals(object obj)
         {
             return obj is Readers message &&
