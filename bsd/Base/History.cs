@@ -24,7 +24,7 @@ namespace bsd.Base
         [Column("id_book")]
         public int id_book { get; set; }
         [Column("id_reader")]
-        public int book_id { get; set; }
+        public int id_reader { get; set; }
         [Column("PrelimDateOfDel")]
         public DateTime PrelimDateOfDel { get; set; }
 

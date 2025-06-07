@@ -26,7 +26,5 @@ namespace bsd.Base
         public int CountBooking { get; set; }
         [Column("ISBN")]
         public int ISBN { get; set; }
-
-       
     }
 }
