@@ -127,6 +127,15 @@ namespace bsd
             var newform = new BookDelivery();
             newform.Show();
             this.Close();
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var newform = new HistoryPage();
+            newform.Show();
+            
+
         }
 
       

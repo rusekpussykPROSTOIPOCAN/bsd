@@ -1,6 +1,8 @@
 ﻿using bsd.Base;
+using bsd.Models;
 using Supabase;
 using Supabase.Interfaces;
+using System.Collections.Immutable;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,8 +26,6 @@ namespace bsd
         public MainWindow()
         {
             InitializeComponent();
-            
-
         }
         public async Task GetBooks() {
            
@@ -79,10 +79,6 @@ namespace bsd
                 newform.Show();
                 this.Close();
             }
-          
-            
-
-
         }
     }
 }

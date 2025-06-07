@@ -69,14 +69,16 @@
         </StackPanel>
 
         <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4">
-            <DataGrid ItemsSource="{Binding books}" CanUserSortColumns="True" AutoGenerateColumns="False">
+
+  <DataGrid ItemsSource="{Binding books}" IsReadOnly="True" CanUserSortColumns="True" AutoGenerateColumns="False">
+
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Autor" Binding="{Binding Autor}"/>
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
                     <DataGridTextColumn Header="Year" Binding="{Binding Year}"/>
                     <DataGridTextColumn Header="Chapter" Binding="{Binding Chapter}"/>
                     <DataGridTextColumn Header="InventaryNum" Binding="{Binding InventaryNum}"/>
-                    <DataGridTextColumn Header="condition" Binding="{Binding condition}"/>
+                    <DataGridTextColumn Header="Condition" Binding="{Binding condition}"/>
                     <DataGridTextColumn Header="CountBooking" Binding="{Binding CountBooking}"/>
                     <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}"/>
                 </DataGrid.Columns>
