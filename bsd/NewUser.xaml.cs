@@ -40,7 +40,7 @@ namespace bsd
                 Lname = LastName.Text,
                 Pass = Pass.Text,
                 Email = Email.Text,
-                SeriaAndNum = Convert.ToInt32(SerNum.Text),
+                SeriaAndNum = SerNum.Text,
                 Sex = sex,
                 IsueByWhom = Whom.Text,
                 Code = Code.Text,

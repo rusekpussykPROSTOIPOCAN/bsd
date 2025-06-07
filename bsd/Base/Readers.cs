@@ -23,7 +23,7 @@ namespace bsd.Base
         [Column("Email")]
         public string Email { get; set; }
         [Column("SeriaAndNum")]
-        public int SeriaAndNum { get; set; }
+        public string SeriaAndNum { get; set; }
         [Column("Sex")]
         public string Sex { get; set; }
         [Column("IsueByWhom")]
