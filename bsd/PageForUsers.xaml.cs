@@ -1,3 +1,4 @@
+
 ﻿using bsd.Base;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace bsd
         public PageForUsers()
         {
             InitializeComponent();
+
          ConvertPhotos();
            
         }
@@ -38,6 +40,7 @@ namespace bsd
             {
                 topbooks.Add(item);
             }
+
 
         }
 

@@ -1,5 +1,5 @@
 ﻿using bsd.Base;
-
+using bsd.ViewModel;
 using System.Collections.ObjectModel;
 
 using System.Windows;
@@ -18,8 +18,7 @@ namespace bsd
         public WorkSpaceForLibrarions()
         {
             InitializeComponent();
-            TryName();
-            DataContext = this;
+            DataContext = new BookDeliveryViewModel();
             LoadBooks();
         }
 
@@ -50,37 +49,7 @@ namespace bsd
                 Console.WriteLine("");
             }
         }
-        public async static void TryName()
-        {
-            int id = App.NameLib;
-            var tryLib = await App.SupabaseClient.From<Librarions>().Where(x => x.Id == id).Get();
-            foreach (var item in tryLib.Models)
-            {
-                MessageBox.Show(item.firstname);
-            }
-        }
-        public static   void SearchBook( TextBox Search)
-        {
-           
-               if (string.IsNullOrWhiteSpace(Search.Text))
-            {
-                LoadBooks();
-            }
-            else
-            {
-                books.Clear();
-                foreach (var item in _allB)
-                {
-                    if (Search.Text == item.Title || Search.Text == item.Autor || Search.Text == item.ISBN.ToString() || Search.Text == item.condition )
-                    {
-                        books.Add(item);
-                    }
-                }
-            }
-            
-            
-            
-        }
+
         public static   void SearchBookLike( TextBox Search)
         {
 
@@ -126,7 +95,7 @@ namespace bsd
         {
             var newform = new BookDelivery();
             newform.Show();
-            this.Close();
+            
 
         }
 
@@ -149,7 +118,7 @@ namespace bsd
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            SearchBook(Search);
+            BookDeliveryViewModel.SearchBook(Search);
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)

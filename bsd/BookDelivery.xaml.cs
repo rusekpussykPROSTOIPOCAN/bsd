@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using static System.Reflection.Metadata.BlobBuilder;
 using CommunityToolkit.Mvvm.ComponentModel;
+using bsd.ViewModel;
+using FluidKit.Controls;
 
 namespace bsd
 {
@@ -23,69 +25,39 @@ namespace bsd
     /// </summary>
     public partial class BookDelivery : Window
     {
-        public ObservableCollection<BooksBase> books { get; set; } = new ObservableCollection<BooksBase>();
-        public ObservableCollection<Readers> readers { get; set; } = new ObservableCollection<Readers>();
+        public static string CurrentLibName;
         public BookDelivery()
         {
             InitializeComponent();
-            DataContext = this;
-            LoadBooks();
-            LoadReaders();
+            LoadLib();
+            DataContext = new BookDeliveryViewModel();
+            
         }
 
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
-            var newform = new WorkSpaceForLibrarions();
-            newform.Show();
             this.Close();
         }
-
-        private async void LoadBooks()
+        
+        private async void LoadLib()
         {
-            try
+            int id = App.NameLib;
+            var tryLib = await App.SupabaseClient.From<Librarions>().Where(x => x.Id == id).Get();
+            foreach (var item in tryLib.Models)
             {
-                var response = await App.SupabaseClient.From<BooksBase>().Get();
-                if (response != null && response.Models!= null)
-                {
-                    books.Clear();
-                    foreach (var book in response.Models)
-                    {
-                        books.Add(book);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("");
+                TextBoxForLibName.Text = item.firstname + " " + item.lastname;
             }
         }
 
-        private async void LoadReaders()
+        
+        private void SearchBook_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                var response = await App.SupabaseClient.From<Readers>().Get();
-                if(response != null && response.Models!= null)
-                {
-                    readers.Clear();
-                    foreach (var reader in response.Models)
-                    {
-                        readers.Add(reader);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("");
-                }
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine("");
-            }
+            BookDeliveryViewModel.SearchBook(SearchBookField);
+        }
+
+        private void SearchReader_Click(object sender, RoutedEventArgs e)
+        {
+            BookDeliveryViewModel.SearchReader(SearchReaderField);
         }
     }
 }

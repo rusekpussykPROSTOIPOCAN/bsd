@@ -1,5 +1,4 @@
 ﻿using bsd.Base;
-
 using Supabase;
 using Supabase.Interfaces;
 using System.Collections.Immutable;
@@ -27,10 +26,7 @@ namespace bsd
         {
             InitializeComponent();
         }
-        public async Task GetBooks() {
-           
-        }
-
+    
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             string log = Log.Text;
