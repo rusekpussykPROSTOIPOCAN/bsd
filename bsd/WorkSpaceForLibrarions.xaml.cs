@@ -18,6 +18,7 @@ namespace bsd
         public WorkSpaceForLibrarions()
         {
             InitializeComponent();
+            TryName();
             DataContext = this;
             LoadBooks();
         }
@@ -27,6 +28,7 @@ namespace bsd
             try
             {
                 var response = await App.SupabaseClient.From<BooksBase>().Get();
+               
                 if (response != null && response.Models
                     != null)
                 {
@@ -46,6 +48,15 @@ namespace bsd
             } catch (Exception ex)
             {
                 Console.WriteLine("");
+            }
+        }
+        public async static void TryName()
+        {
+            int id = App.NameLib;
+            var tryLib = await App.SupabaseClient.From<Librarions>().Where(x => x.Id == id).Get();
+            foreach (var item in tryLib.Models)
+            {
+                MessageBox.Show(item.firstname);
             }
         }
         public static   void SearchBook( TextBox Search)

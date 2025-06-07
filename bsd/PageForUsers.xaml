@@ -1,4 +1,5 @@
 ﻿<Window x:Class="bsd.PageForUsers"
+       xmlns:cae ="clr-namespace:FluidKit.Controls;assembly=FluidKit"
         Background="OldLace"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -42,7 +43,11 @@
         <Button Click="Button_Click_1" VerticalAlignment="Bottom" Content="Выход" Grid.Column="0" Grid.Row="4"/>
         <Button Content="История" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Click="Button_Click"/>
         <Grid   Grid.Row="2" Grid.ColumnSpan="3">
-           
+            <cae:ElementFlow x:Name="Carusel" ItemsSource="{DynamicResource DataSourse}" SelectedIndex="0" HasReflection="True" >
+                <cae:ElementFlow.Layout>
+                    <cae:CoverFlow/>
+                </cae:ElementFlow.Layout>
+            </cae:ElementFlow>
         </Grid>
 
         <ListView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" >

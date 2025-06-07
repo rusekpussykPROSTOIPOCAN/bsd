@@ -13,6 +13,9 @@ namespace bsd
     /// </summary>
     public partial class App : Application
     {
+        public static int NameLib;
+        public static int NameUser;
+        public static int NameDep;
         public static Supabase.Client SupabaseClient { get; private set; }
         public static IConfiguration Configuration { get; private set; }
         protected override async void OnStartup(StartupEventArgs e)

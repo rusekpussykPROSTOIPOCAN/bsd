@@ -20,6 +20,7 @@ namespace bsd
     public partial class MainWindow : Window
     {
        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -49,16 +50,31 @@ namespace bsd
                     {
                         MessageBox.Show("Ничего");
                     }
+                    else
+                    {
+                        foreach (var item in p)
+                        {
+                          App.NameDep = item.Id;
+                        }
+                    }
                 }
                 else
                 {
-
+                    foreach (var item in l)
+                    {
+                      App.NameLib = item.Id;
+                    }
+                    MessageBox.Show(App.NameLib.ToString());
                     var newform = new WorkSpaceForLibrarions();
                     newform.Show();
                     this.Close();
                 }
             }
             else {
+                foreach (var item in u)
+                {
+                   App. NameUser = item.Id;
+                }
                 var newform = new PageForUsers();
                 newform.Show();
                 this.Close();
