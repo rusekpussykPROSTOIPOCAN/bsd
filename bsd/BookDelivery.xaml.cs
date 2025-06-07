@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using static System.Reflection.Metadata.BlobBuilder;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace bsd
 {

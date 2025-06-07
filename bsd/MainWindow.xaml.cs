@@ -25,8 +25,6 @@ namespace bsd
         public MainWindow()
         {
             InitializeComponent();
-            
-
         }
         public async Task GetBooks() {
            
@@ -61,27 +59,10 @@ namespace bsd
                 }
             }
             else {
-                /*SetUsers(u);*/
                 var newform = new PageForUsers();
                 newform.Show();
                 this.Close();
             }
         }
-        /*public async void SetUsers(List<Readers> readers)
-        {
-            User user = new User()
-            {
-                Id = readers.First().Id,
-                Password = readers.First().Pass,
-                Email = readers.First().Email,
-                SerialAndNumber = readers.First().SeriaAndNum,
-                DateOfIssue = readers.First().DateOfIssue,
-                LastName = readers.First().Lname,
-                FirstName = readers.First().Fname,
-                Sex = readers.First().Sex,
-                IssuedByWhom = readers.First().IsueByWhom,
-                UnitCode = readers.First().Code
-            };
-        }*/
     }
 }
