@@ -15,8 +15,6 @@ namespace bsd.ViewModel
 
         public ObservableCollection<BooksBase> Book { get; set; }
 
-        public  LibrarionsViewModel() {
-           
-        }
+       
     }
 }

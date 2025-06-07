@@ -6,12 +6,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:bsd" xmlns:c1grid1="http://schemas.componentone.com/wpf/C1DataGrid"
+        xmlns:local="clr-namespace:bsd"
+        xmlns:viewmodel="clr-namespace:bsd.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:BookDeliveryViewModel}"
         mc:Ignorable="d"
         Title="PageForUsers" Height="450" Width="800">
     <Window.Resources>
         <ItemsPanelTemplate x:Key="Carusel">
-           
+
         </ItemsPanelTemplate>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" x:Key="Brush">
             <GradientStop Offset="0" Color="LightCyan"/>
@@ -34,33 +35,52 @@
             <ColumnDefinition ></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition ></RowDefinition>
+            <RowDefinition Height="Auto" ></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Grid.ColumnSpan="2" Grid.Row="1"/>
-        <Button Content="Поиск" Grid.Column="2" Grid.Row="1"/>
-        <Button Click="Button_Click_1" VerticalAlignment="Bottom" Content="Выход" Grid.Column="0" Grid.Row="4"/>
-        <Button Content="История" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Click="Button_Click"/>
-        <Grid Grid.Row="2" Grid.ColumnSpan="3">
-            <DataGrid ItemsSource="{Binding topbooks}">
+        <TextBox x:Name="Search" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="Топ 50 книг за месяц" FontWeight="Bold" Background="Azure" HorizontalContentAlignment="Center"/>
+        <Button Content="Поиск" Grid.Column="2" Grid.Row="1" Click="Button_Click_2"/>
+        <Button Click="Button_Click_1" VerticalAlignment="Bottom" Content="Выход" Grid.Column="0" Grid.Row="5"/>
+        <Button Content="История" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Click="Button_Click" Height="30" VerticalAlignment="Top"/>
+        <ListBox Grid.Row="1" Grid.RowSpan="4" ItemsSource="{Binding topbooks}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" Width="200" Margin="10">
+                        <TextBlock Text="{Binding Title}" FontWeight="Bold" Margin="0,5,0,0"/>
+                        <TextBlock Text="{Binding Autor}" Foreground="Gray"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4">
+
+            <DataGrid ItemsSource="{Binding books}" IsReadOnly="True" CanUserSortColumns="True" AutoGenerateColumns="False">
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Title}"/>
-                    <DataGridTextColumn Binding="{Binding Autor}"/>
+                    <DataGridTextColumn Header="Autor" Binding="{Binding Autor}"/>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                    <DataGridTextColumn Header="Year" Binding="{Binding Year}"/>
+                    <DataGridTextColumn Header="Chapter" Binding="{Binding Chapter}"/>
+                    <DataGridTextColumn Header="InventaryNum" Binding="{Binding InventaryNum}"/>
+                    <DataGridTextColumn Header="Condition" Binding="{Binding condition}"/>
+                    <DataGridTextColumn Header="CountBooking" Binding="{Binding CountBooking}"/>
+                    <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
-        <ListView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <!--Чето еще-->
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
     </Grid>
 </Window>
