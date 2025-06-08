@@ -19,13 +19,13 @@ namespace bsd.Base
         [Column("Chapter")]
         public string Chapter { get; set; }
         [Column("InventaryNum")]
-        public int InventaryNum { get; set; }
+        public string InventaryNum { get; set; }
         [Column("condition")]
         public string condition { get; set; }
         [Column("CountBooking")]
         public int CountBooking { get; set; }
         [Column("ISBN")]
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
 
     }
 }
