@@ -59,6 +59,7 @@ namespace bsd
                     foreach (var item in l)
                     {
                       App.NameLib = item.Id;
+
                     }
                     var newform = new WorkSpaceForLibrarions();
                     newform.Show();
@@ -69,6 +70,7 @@ namespace bsd
                 foreach (var item in u)
                 {
                    App. NameUser = item.Id;
+                    App.BlackList = item.BlackList;
                 }
                 var newform = new PageForUsers();
                 newform.Show();
