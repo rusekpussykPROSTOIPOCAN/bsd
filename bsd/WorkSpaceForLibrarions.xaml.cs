@@ -138,5 +138,11 @@ namespace bsd
             var newform = new Reports();
             newform.Show();
         }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            var newform = new BooksReturn();
+            newform.Show();
+        }
     }
 }

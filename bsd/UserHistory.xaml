@@ -11,7 +11,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Книга" Binding="{Binding BookName}"/>
                 <DataGridTextColumn Header="Автор" Binding="{Binding Autor}"/>
-                <DataGridTextColumn Header="Дата взятия" Binding="{Binding DateOfIssueOrBooking}"/>
+                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding DateOfIssueOrBooking}"/>
                 <DataGridTextColumn Header="Дата сдачи" Binding="{Binding dateOfDel}"/>
                 <DataGridTextColumn Header="Предварительная дата сдачи" Binding="{Binding PrelimDateOfDel}"/>
                 <DataGridTextColumn Header="Бронь или срок" Binding="{Binding BookingOrExtradition}"/>

@@ -8,6 +8,18 @@
         mc:Ignorable="d"
         Title="HistoryPage" Height="450" Width="800">
     <Grid>
-        <DataGrid IsReadOnly="True" ItemsSource="{Binding history}"/>
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Hview}">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Книга" Binding="{Binding BookName}"/>
+                <DataGridTextColumn Header="Автор" Binding="{Binding Autor}"/>
+                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding DateOfIssueOrBooking}"/>
+                <DataGridTextColumn Header="Дата сдачи" Binding="{Binding dateOfDel}"/>
+                <DataGridTextColumn Header="Предварительная дата сдачи" Binding="{Binding PrelimDateOfDel}"/>
+                <DataGridTextColumn Header="Бронь или срок" Binding="{Binding BookingOrExtradition}"/>
+                <DataGridTextColumn Header="Закрыта ли запись" Binding="{Binding End}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
     </Grid>
 </Window>

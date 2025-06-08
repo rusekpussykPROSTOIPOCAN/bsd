@@ -1,0 +1,14 @@
+﻿<Window x:Class="bsd.BooksReturn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bsd"
+        mc:Ignorable="d"
+        Title="BooksReturn" Height="149" Width="326">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"  Height="99" >
+        <Label HorizontalAlignment="Center" Margin="5" Content="Инвентарный номер книги"/>
+        <TextBox x:Name="InventNum" Margin="5"/>
+        <Button Click="Button_Click" Margin="5" Content="Вернуть"/>
+    </StackPanel>
+</Window>

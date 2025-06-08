@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 namespace bsd.ReportViews
 {
-    public static ObservableCollection<BooksBase> topbooks { get; set; } = new ObservableCollection<BooksBase>();
+    /*public static ObservableCollection<BooksBase> topbooks { get; set; } = new ObservableCollection<BooksBase>();*/
     /// <summary>
     /// Логика взаимодействия для ReportForDay.xaml
     /// </summary>
