@@ -132,5 +132,11 @@ namespace bsd
             var newform = new HistoryPage();
             newform.Show();
         }
+
+        private void PageForReport_Click(object sender, RoutedEventArgs e)
+        {
+            var newform = new Reports();
+            newform.Show();
+        }
     }
 }

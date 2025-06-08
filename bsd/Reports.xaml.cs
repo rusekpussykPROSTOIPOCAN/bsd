@@ -22,6 +22,27 @@ namespace bsd
         public Reports()
         {
             InitializeComponent();
+            FormComboBox.Items.Add("Отчет за день");
+            FormComboBox.Items.Add("Отчет за месяц");
+        }
+
+        private void FormComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Form1.Visibility = Visibility.Collapsed;
+            Form2.Visibility = Visibility.Collapsed;
+
+            if(FormComboBox.SelectedItem != null)
+            {
+                string selecterdForm = FormComboBox.SelectedItem.ToString();
+                if(selecterdForm == "Отчет за день")
+                {
+                    Form1.Visibility = Visibility.Visible;
+                }
+                else if(selecterdForm == "Отчет за месяц")
+                {
+                    Form2.Visibility = Visibility.Visible;
+                }
+            }
         }
     }
 }

@@ -55,7 +55,7 @@
             <Button Content="Поиск"  Click="Button_Click_4"/>
       </ComboBox>
         <TextBox  x:Name="Search"  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Margin="6,5,6,5"/>
-        <Button Content="Создать отчет" Grid.Column="5" />
+        <Button Name="PageForReport" Click="PageForReport_Click" Content="Создать отчет" Grid.Column="5" />
         <StackPanel Background="WhiteSmoke" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2">
             <ListView  Grid.RowSpan="3">
                 <ListView.ItemTemplate>
