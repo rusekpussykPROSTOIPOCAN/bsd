@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using bsd.ViewModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,27 +23,15 @@ namespace bsd
     /// </summary>
     public partial class PageForUsers : Window
     {
-        public static ObservableCollection<BooksBase> topbooks {  get; set; }  = new ObservableCollection<BooksBase>();
         public PageForUsers()
         {
             InitializeComponent();
-
-         ConvertPhotos();
+            DataContext = new BookDeliveryViewModel();
+            BookDeliveryViewModel.Tops();
            
         }
         
-        public async static void ConvertPhotos()
-        {
-           var topbooksGet = await App.SupabaseClient.From<BooksBase>().Order(x=>x.CountBooking, ordering:Supabase.Postgrest.Constants.Ordering.Descending).Limit(3).Get();
-
-
-            foreach (var item in topbooksGet.Models)
-            {
-                topbooks.Add(item);
-            }
-
-
-        }
+      
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -54,6 +43,11 @@ namespace bsd
             var newform = new MainWindow();
             newform.Show();
             this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            BookDeliveryViewModel.SearchBook(Search);
         }
     }
 }

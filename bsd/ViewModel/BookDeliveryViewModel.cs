@@ -18,6 +18,8 @@ namespace bsd.ViewModel
         public static ObservableCollection<BooksBase> _allB { get; set; } = new ObservableCollection<BooksBase>();
         public static ObservableCollection<Readers> readers { get; set; } = new ObservableCollection<Readers>();
         public static ObservableCollection<Readers> _allR { get; set; } = new ObservableCollection<Readers>();
+        public static ObservableCollection<BooksBase> topbooks { get; set; } = new ObservableCollection<BooksBase>();
+
 
         [ObservableProperty]
         private BooksBase _selectedBook;
@@ -28,6 +30,17 @@ namespace bsd.ViewModel
         {
             LoadBooks();
             LoadReaders();
+        }
+        public async static void Tops()
+        {
+            var topbooksGet = await App.SupabaseClient.From<BooksBase>().Order(x => x.CountBooking, ordering: Supabase.Postgrest.Constants.Ordering.Descending).Limit(50).Get();
+
+            topbooks.Clear();
+            foreach (var item in topbooksGet.Models)
+            {
+                topbooks.Add(item);
+            }
+
         }
         public static async void LoadBooks()
         {
