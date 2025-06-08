@@ -139,6 +139,17 @@ namespace bsd.ViewModel
         {
             if(SelectedBook != null && SelectedReaders != null)
             {
+                var model = new History
+                {
+                    DateOfIssueOrBooking = DateTime.Now,
+                    id_book = SelectedBook.Id,
+                    id_reader = SelectedReaders.Id,
+                    PrelimDateOfDel = DateTime.Now.AddDays(30)
+                };
+                int currentCountBooking = SelectedBook.CountBooking;
+                int updateCountBooking = currentCountBooking + 1;
+                App.SupabaseClient.From<History>().Insert(model);
+                App.SupabaseClient.From<BooksBase>().Where(x=>x.Id==SelectedBook.Id).Set(x=>x.CountBooking, updateCountBooking).Update();
                 MessageBox.Show($"{SelectedBook.Title} выдано пользователю: {SelectedReaders.Fname} {SelectedReaders.Lname}");
                 SelectedBook = null;
                 SelectedReaders = null;
@@ -148,5 +159,7 @@ namespace bsd.ViewModel
                 MessageBox.Show("Выберите книгу и читателя!");
             }
         }
+
+
     }
 }

@@ -60,7 +60,6 @@ namespace bsd
                     {
                       App.NameLib = item.Id;
                     }
-                    MessageBox.Show(App.NameLib.ToString());
                     var newform = new WorkSpaceForLibrarions();
                     newform.Show();
                     this.Close();
