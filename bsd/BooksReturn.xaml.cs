@@ -28,7 +28,8 @@ namespace bsd
             {
                 id = item.Id;
             }
-           await App.SupabaseClient.From<History>().Where(x => x.id_book == id).Set(x => x.End, true).Update();
+           await App.SupabaseClient.From<History>().Where(x => x.id_book == id).Set(x => x.End, true ).Update();
+           await App.SupabaseClient.From<History>().Where(x => x.id_book == id).Set(x => x.dateOfDel, DateTime.Now.Date ).Update();
             BookDeliveryViewModel.LoadBooks();
 
         }

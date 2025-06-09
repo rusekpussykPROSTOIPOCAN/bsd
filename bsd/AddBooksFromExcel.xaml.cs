@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using bsd.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,18 +24,10 @@ namespace bsd
         public AddBooksFromExcel()
         {
             InitializeComponent();
+            DataContext = new BookDeliveryViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog f = new OpenFileDialog();
-           bool? su =  f.ShowDialog();
-            if (su == true)
-            {
-                string path = f.FileName;
-                
-            }
-            
-        }
+        
+      
     }
 }

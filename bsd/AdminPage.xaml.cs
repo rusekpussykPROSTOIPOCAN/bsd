@@ -48,7 +48,8 @@ namespace bsd
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            
+            var newform = new AddBooksFromExcel();
+            newform.Show();
         }
     }
 }

@@ -1,13 +1,20 @@
-﻿using bsd.Base;
+﻿
+using bsd.Base;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Win32;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using Supabase.Gotrue.Mfa;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace bsd.ViewModel
@@ -54,6 +61,81 @@ namespace bsd.ViewModel
                 topbooks.Add(item);
             }
 
+        }
+        [RelayCommand]
+        public static async Task GetBooksFromExel()
+        {
+            string path = "";
+            OpenFileDialog f = new OpenFileDialog();
+            bool? su = f.ShowDialog();
+            if (su == true)
+            {
+               path  = f.FileName;
+
+
+            }
+            try
+            {
+                IWorkbook workbook;
+                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                {
+                    workbook = new XSSFWorkbook(fs);
+                }
+                ISheet sheet = workbook.GetSheetAt(0);
+                for (int row = 1; row < sheet.LastRowNum; row++)
+                {
+                    IRow c = sheet.GetRow(row);
+                    if (c == null)
+                    {
+                        continue;
+                    }
+                    for (global::System.Int32 i = 0; i < c.LastCellNum; i += 6)
+                    {
+                        ICell cell = c.GetCell(i);
+                        if (cell == null) { continue; }
+
+                        var model = new BooksBase
+                        {
+                            Autor = GetCellValue(c.GetCell(i)),
+                            Title = GetCellValue(c.GetCell(i + 1)),
+                            Year = DateOnly.Parse(GetCellValue(c.GetCell(i + 2))),
+                            Chapter = GetCellValue(c.GetCell(i + 3)),
+                            InventaryNum = GetCellValue(c.GetCell(i + 4)),
+                            condition = GetCellValue(c.GetCell(i + 5)),
+                            ISBN = GetCellValue(c.GetCell(i + 6))
+                        };
+                        await App.SupabaseClient.From<BooksBase>().Insert(model);
+                        i++;
+                    }
+                }
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show("Проверьте формат данных");
+            }
+            LoadBooks();
+            MessageBox.Show("Готово");
+
+
+        }
+       public static string GetCellValue(ICell cell)
+        {
+            switch (cell.CellType)
+            {
+                case CellType.String:
+                    return cell.StringCellValue;
+                case CellType.Numeric:
+                    if (DateUtil.IsCellDateFormatted(cell))
+                        return cell.DateOnlyCellValue.ToString();
+                    else
+                        return cell.NumericCellValue.ToString();
+                case CellType.Boolean:
+                    return cell.BooleanCellValue.ToString();
+                case CellType.Formula:
+                    return cell.CellFormula;
+                default:
+                    return string.Empty;
+            }
         }
         public static async void LoadBooks()
         {

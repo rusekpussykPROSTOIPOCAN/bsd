@@ -6,6 +6,22 @@
         xmlns:local="clr-namespace:bsd"
         mc:Ignorable="d"
         Title="AdminPage" Height="385" Width="285">
+    <Window.Resources>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" x:Key="Brush">
+            <GradientStop Offset="0" Color="LightCyan"/>
+            <GradientStop Offset="0.5" Color="LightBlue"/>
+            <GradientStop Offset="1" Color="LightCyan"/>
+        </LinearGradientBrush>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource Brush}"/>
+            <Setter Property="BorderBrush" Value="LightSeaGreen"/>
+            <Setter Property="Width" Value="AUTO"/>
+          
+            <Setter Property="Margin" Value="5"/>
+            
+        </Style>
+    </Window.Resources>
+    
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -13,9 +29,9 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Click="Button_Click" Margin="5" Grid.Row="0" Content="Добавить книгу"/>
-        <Button Click="Button_Click_3" Margin="5" Grid.Row="1" Content="Импортировать список книг из excel"/>
-        <Button Click="Button_Click_2" Margin="5" Grid.Row="2" Content="Удалить книгу"/>
-        <Button Click="Button_Click_1"  Margin="5" Grid.Row="3" Content="Выйти"/>
+        <Button Click="Button_Click"  Grid.Row="0" Content="Добавить книгу"/>
+        <Button Click="Button_Click_3"  Grid.Row="1" Content="Импортировать список книг из excel"/>
+        <Button Click="Button_Click_2"  Grid.Row="2" Content="Удалить книгу"/>
+        <Button Click="Button_Click_1"   Grid.Row="3" Content="Выйти"/>
     </Grid>
 </Window>

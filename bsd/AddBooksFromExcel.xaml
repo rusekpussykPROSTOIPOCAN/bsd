@@ -4,10 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bsd"
+        xmlns:viewmodel="clr-namespace:bsd.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:BookDeliveryViewModel}"
         mc:Ignorable="d"
         Title="AddBooksFromExcel" Height="450" Width="373">
+    <Window.Resources>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" x:Key="Brush">
+            <GradientStop Offset="0" Color="LightCyan"/>
+            <GradientStop Offset="0.5" Color="LightBlue"/>
+            <GradientStop Offset="1" Color="LightCyan"/>
+        </LinearGradientBrush>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource Brush}"/>
+            <Setter Property="BorderBrush" Value="LightSeaGreen"/>
+            <Setter Property="Width" Value="AUTO"/>
+
+            <Setter Property="Margin" Value="5"/>
+
+        </Style>
+    </Window.Resources>
     <StackPanel Margin="20">
         <Button Content="Шаблон документа"/>
-        <Button Content="Выбрать файл" Click="Button_Click"/>
+        <Button Content="Выбрать файл" Command="{Binding GetBooksFromExelCommand}"/>
     </StackPanel>
 </Window>
