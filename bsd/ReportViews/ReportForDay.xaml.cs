@@ -27,12 +27,15 @@ namespace bsd.ReportViews
     {
         public static ObservableCollection<BooksBase> TopThreeBooks { get; set; } = new ObservableCollection<BooksBase>();
         public static ObservableCollection<Readers> TopThreeReaders { get; set; } = new ObservableCollection<Readers>();
+        public static int CountBooks { get; set; }
         public ReportForDay()
         {
             InitializeComponent();
             DataContext = this;
             TopsBooks();
             TopsReaders();
+            SetCountBooks(TextBoxForCountBooks);
+            LoadLib();
         }
 
         public async static void TopsBooks()
@@ -64,6 +67,22 @@ namespace bsd.ReportViews
                         Lname = reader.Lname,
                     });
                 }
+            }
+        }
+
+        public async static void SetCountBooks(TextBox TextBoxForCountBooks)
+        {
+            var historyResponseBook = await App.SupabaseClient.From<History>().Select("DateOfIssueOrBooking").Where(x => x.DateOfIssueOrBooking == DateTime.Now).Get();
+            TextBoxForCountBooks.Text = historyResponseBook.Models.Count.ToString();
+        }
+
+        private async void LoadLib()
+        {
+            int id = App.NameLib;
+            var tryLib = await App.SupabaseClient.From<Librarions>().Where(x => x.Id == id).Get();
+            foreach (var item in tryLib.Models)
+            {
+                TextBoxForNameLib.Text = item.firstname + " " + item.lastname;
             }
         }
     }

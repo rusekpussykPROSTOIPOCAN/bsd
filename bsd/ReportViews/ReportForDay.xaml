@@ -85,6 +85,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Сколько книг взяли:" Margin="5" Grid.ColumnSpan="1" Width="110"/>
+            <TextBox Name="TextBoxForCountBooks" Width="50" HorizontalAlignment="Left" Grid.Column="1" Margin="5" IsReadOnly="True"/>
         </Grid>
         <Grid Grid.Row="7" Grid.Column="2"  Background="LightGray">
             <Grid.ColumnDefinitions>
@@ -95,7 +96,8 @@
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Отчет составлен:" Grid.Row="0" Width="110"/>
-            <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now},  StringFormat='dd-MM-yy',Mode=OneWay}" Grid.Row="1" Width="50"/>
+            <TextBox Name="TextBoxForNameLib" Height="20" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" IsReadOnly="True"/>
+            <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static sys:DateTime.Now},  StringFormat='dd-MM-yy',Mode=OneWay}" Grid.Row="1" Width="50"/>
         </Grid>
     </Grid>
 </UserControl>
