@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bsd.ReportViews"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:viewmodel="clr-namespace:bsd.ReportViews" d:DataContext="{d:DesignInstance Type=viewmodel:ReportForMonth}"
         mc:Ignorable="d"
         d:DesignHeight="400" d:DesignWidth="250">
     <Grid Background="White">
@@ -33,6 +34,21 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Text="Лучшие книги" Margin="5" Grid.ColumnSpan="2" Width="80"/>
+            <ListBox Background="LightGray" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding TopThreeBooksInMonth}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Width="Auto">
+                            <TextBlock Text="{Binding Title}" />
+                            <TextBlock Text="{Binding Autor}" Margin="10 0 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
         <Grid Grid.Row="3" Grid.ColumnSpan="2" Background="LightGray">
             <Grid.ColumnDefinitions>
@@ -44,6 +60,21 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Text="Частые читатели" Margin="5" Grid.ColumnSpan="2" Width="95"/>
+            <ListBox Background="LightGray" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding TopThreeReadersInMonth}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Width="Auto">
+                            <TextBlock Text="{Binding Fname}" />
+                            <TextBlock Text="{Binding Lname}" Margin="10 0 0 0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
         <Grid Grid.Row="5" Grid.ColumnSpan="2" Background="LightGray">
             <Grid.ColumnDefinitions>
@@ -54,6 +85,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Сколько книг взяли:" Margin="5" Grid.ColumnSpan="1" Width="110"/>
+            <TextBox Name="TextBoxForCountBooksInMonth" Width="50" HorizontalAlignment="Left" Grid.Column="1" Margin="5" IsReadOnly="True"/>
         </Grid>
         <Grid Grid.Row="7" Grid.Column="2"  Background="LightGray">
             <Grid.ColumnDefinitions>
@@ -64,7 +96,8 @@
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Отчет составлен:" Grid.Row="0" Width="110"/>
-            <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now},  StringFormat='dd-MM-yy',Mode=OneWay}" Grid.Row="1" Width="50"/>
+            <TextBox Name="TextBoxForNameLibInMonth" Height="20" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" IsReadOnly="True"/>
+            <TextBlock VerticalAlignment="Center" Text="{Binding Source={x:Static sys:DateTime.Now},  StringFormat='dd-MM-yy',Mode=OneWay}" Grid.Row="1" Width="50"/>
         </Grid>
     </Grid>
 </UserControl>
