@@ -32,6 +32,7 @@ namespace bsd
                 AutoConnectRealtime = true
             });
             await SupabaseClient.InitializeAsync();
+           
 
 
         }

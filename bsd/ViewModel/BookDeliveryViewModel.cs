@@ -31,6 +31,19 @@ namespace bsd.ViewModel
             LoadBooks();
             LoadReaders();
         }
+        public static void AddBooks(TextBox Autor, TextBox Title, TextBox Year,TextBox InvNum, TextBox Chapter, TextBox ISBN)
+        {
+            var model = new BooksBase
+            {
+                Autor = Autor.Text,
+                Title = Title.Text,
+                Year = DateOnly.Parse(Year.Text),
+                InventaryNum = InvNum.Text,
+                Chapter = Chapter.Text,
+                ISBN = ISBN.Text
+            };
+            App.SupabaseClient.From<BooksBase>().Insert(model);
+        }
         public async static void Tops()
         {
             var topbooksGet = await App.SupabaseClient.From<BooksBase>().Order(x => x.CountBooking, ordering: Supabase.Postgrest.Constants.Ordering.Descending).Limit(50).Get();
@@ -135,6 +148,7 @@ namespace bsd.ViewModel
         }
         public async static void User(TextBox Name, TextBox LastName, TextBox Pass, TextBox Email, TextBox SerNum,string sex ,TextBox Whom, TextBox Code, TextBox DateV)
         {
+          
             try
             {
 

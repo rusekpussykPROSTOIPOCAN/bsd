@@ -51,7 +51,11 @@ namespace bsd
                         foreach (var item in p)
                         {
                           App.NameDep = item.Id;
+
                         }
+                        var newform = new AdminPage();
+                        newform.Show();
+                        this.Close();
                     }
                 }
                 else
