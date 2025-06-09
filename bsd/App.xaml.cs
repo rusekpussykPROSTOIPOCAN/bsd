@@ -1,10 +1,11 @@
-﻿using Supabase;
+﻿using bsd.Base;
 using Microsoft.Extensions.Configuration;
+using SkiaSharp;
+using Supabase;
 using System.Configuration;
 using System.Data;
-using System.Windows;
 using System.IO;
-using bsd.Base;
+using System.Windows;
 
 namespace bsd
 {
@@ -17,7 +18,9 @@ namespace bsd
         public static int NameUser;
         public static int NameDep;
         public static int IdBooks;
+        public static string InvNum;
         public static bool BlackList;
+       
         public static Supabase.Client SupabaseClient { get; private set; }
         public static IConfiguration Configuration { get; private set; }
         protected override async void OnStartup(StartupEventArgs e)
