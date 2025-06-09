@@ -53,6 +53,7 @@ namespace bsd.ReportViews
         {
             var historyResponse = await App.SupabaseClient.From<History>().Select("id_reader").Get();
             var readerCounts = historyResponse.Models.GroupBy(h => h.id_reader).Select(g => new { ReaderId = g.Key, Count = g.Count() }).OrderByDescending(x => x.Count).Take(3).ToList();
+            TopThreeReaders.Clear();
             foreach (var readerCount in readerCounts)
             {
                 var readerResponse = await App.SupabaseClient.From<Readers>().Where(r => r.Id == readerCount.ReaderId).Get();

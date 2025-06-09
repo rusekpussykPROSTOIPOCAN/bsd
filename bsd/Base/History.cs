@@ -14,7 +14,7 @@ namespace bsd.Base
         [PrimaryKey("Id", false)]
         public int Id { get; set; }
         [Column("DateOfIssueOrBooking")]
-        public DateTime DateOfIssueOrBooking { get; set; }
+        public DateTime? DateOfIssueOrBooking { get; set; }
         [Column("dateOfDel")]
         public DateTime dateOfDel { get; set; }
         [Column("BookingOrExtradition")]
@@ -22,9 +22,9 @@ namespace bsd.Base
         [Column("End")]
         public bool End { get; set; }
         [Column("id_book")]
-        public int id_book { get; set; }
+        public int? id_book { get; set; }
         [Column("id_reader")]
-        public int id_reader { get; set; }
+        public int? id_reader { get; set; }
         [Column("PrelimDateOfDel")]
         public DateTime PrelimDateOfDel { get; set; }
 
