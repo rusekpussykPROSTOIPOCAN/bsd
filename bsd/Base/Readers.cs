@@ -15,9 +15,9 @@ namespace bsd.Base
         [PrimaryKey("id", false)]
         public int Id { get; set; }
         [Column("Fname")]
-        public string Fname { get; set; }
+        public string? Fname { get; set; }
         [Column("Lname")]
-        public string Lname { get; set; }
+        public string? Lname { get; set; }
         [Column("Pass")]
         public string Pass { get; set; }
         [Column("Email")]
