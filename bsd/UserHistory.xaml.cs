@@ -21,7 +21,7 @@ namespace bsd
     /// </summary>
     public partial class UserHistory : Window
     {
-        public ObservableCollection<History> history { get; set; } = new ObservableCollection<History>();
+        public ObservableCollection<ForHistoryView> Hview { get; set; } = new ObservableCollection<ForHistoryView>();
      
         public UserHistory()
         {
@@ -34,13 +34,13 @@ namespace bsd
             int id = App.NameUser;
             try
             {
-                var response = await App.SupabaseClient.From<History>().Where(x=>x.id_reader == id).Get();
+                var response = await App.SupabaseClient.From <ForHistoryView>().Where(x=>x.id_reader == id).Get();
                 if (response != null && response.Models != null)
                 {
-                    history.Clear();
+                    Hview.Clear();
                     foreach (var story in response.Models)
                     {
-                        history.Add(story);
+                        Hview.Add(story);
                     }
                 }
                 else

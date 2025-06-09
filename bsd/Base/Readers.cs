@@ -32,8 +32,10 @@ namespace bsd.Base
         public string Code { get; set; }
         [Column("DateOfIssue")]
         public DateTime DateOfIssue { get; set; }
-       
-        
+        [Column("BlackList")]
+        public bool BlackList { get; set; }
+
+
         public override bool Equals(object obj)
         {
             return obj is Readers message &&

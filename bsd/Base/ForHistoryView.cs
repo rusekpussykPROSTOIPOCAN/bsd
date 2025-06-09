@@ -1,4 +1,5 @@
 ﻿using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,23 +8,25 @@ using System.Threading.Tasks;
 
 namespace bsd.Base
 {
-    [Table("countries_view")]
-    class ForHistoryView
+    [Table("cool")]
+    public class ForHistoryView:BaseModel
     {
+        [Column("id_reader")]
+        public int id_reader { get; set; }
         [Column("DateOfIssueOrBooking")]
         public DateOnly DateOfIssueOrBooking { get; set; }
         [Column("dateOfDel")]
-        public string dateOfDel { get; set; }
+        public DateOnly dateOfDel { get; set; }
         [Column("BookingOrExtradition")]
-        public string BookingOrExtradition { get; set; }
+        public bool BookingOrExtradition { get; set; }
         [Column("End")]
-        public DateTime End { get; set; }
+        public bool End { get; set; }
         [Column("Title")]
         public string Title { get; set; }
         [Column("Autor")]
-        public int Autor { get; set; }
+        public string Autor { get; set; }
         [Column("PrelimDateOfDel")]
-        public string PrelimDateOfDel { get; set; }
+        public DateOnly PrelimDateOfDel { get; set; }
 
     }
 }

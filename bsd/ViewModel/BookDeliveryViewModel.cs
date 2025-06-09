@@ -133,6 +133,43 @@ namespace bsd.ViewModel
                 Console.WriteLine("");
             }
         }
+        public async static void User(TextBox Name, TextBox LastName, TextBox Pass, TextBox Email, TextBox SerNum,string sex ,TextBox Whom, TextBox Code, TextBox DateV)
+        {
+            try
+            {
+
+                var model = new Readers
+                {
+                    Fname = Name.Text,
+                    Lname = LastName.Text,
+                    Pass = Pass.Text,
+                    Email = Email.Text,
+                    SeriaAndNum = SerNum.Text,
+                    Sex = sex,
+                    IsueByWhom = Whom.Text,
+                    Code = Code.Text,
+                    DateOfIssue = Convert.ToDateTime(DateV.Text),
+                    BlackList = false
+                };
+                await App.SupabaseClient.From<Readers>().Insert(model);
+                MessageBox.Show("Пользователь успешно добавлен в базу.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка в данных");
+            }
+
+            Name.Clear();
+            LastName.Clear();
+            Pass.Clear();
+            Email.Clear();
+            SerNum.Clear();
+            Whom.Clear();
+            Code.Clear();
+            DateV.Clear();
+
+
+        }
 
         [RelayCommand]
         private void LendBook()
@@ -159,6 +196,8 @@ namespace bsd.ViewModel
                 MessageBox.Show("Выберите книгу и читателя!");
             }
         }
+        
+       
 
 
     }

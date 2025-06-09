@@ -67,7 +67,7 @@
         </ListBox>
         <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4">
 
-            <DataGrid ItemsSource="{Binding books}" IsReadOnly="True" CanUserSortColumns="True" AutoGenerateColumns="False">
+            <DataGrid SelectionMode="Single" x:Name="BooksSelect" MouseDoubleClick="BooksSelect_MouseDoubleClick"  ItemsSource="{Binding books}" IsReadOnly="True" CanUserSortColumns="True" AutoGenerateColumns="False">
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Autor" Binding="{Binding Autor}"/>

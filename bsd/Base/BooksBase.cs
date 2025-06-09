@@ -15,7 +15,7 @@ namespace bsd.Base
         [Column("Title")]
         public string Title { get; set; }
         [Column("Year")]
-        public DateTime Year { get; set; }
+        public DateOnly Year { get; set; }
         [Column("Chapter")]
         public string Chapter { get; set; }
         [Column("InventaryNum")]

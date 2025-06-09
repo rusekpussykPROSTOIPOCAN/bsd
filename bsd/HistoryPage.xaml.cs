@@ -22,8 +22,8 @@ namespace bsd
     /// </summary>
     public partial class HistoryPage : Window
     {
-      public ObservableCollection<History> history { get; set; } = new ObservableCollection<History>();
-       public List<string> strings { get; set; }
+        public ObservableCollection<ForHistoryView> Hview { get; set; } = new ObservableCollection<ForHistoryView>();
+        public List<string> strings { get; set; }
         public HistoryPage()
         {
             InitializeComponent();
@@ -32,15 +32,16 @@ namespace bsd
         }
         private async void LoadBooks()
         {
+            
             try
             {
-                var response = await App.SupabaseClient.From<History>().Get();
+                var response = await App.SupabaseClient.From<ForHistoryView>().Get();
                 if (response != null && response.Models != null)
                 {
-                    history.Clear();
+                    Hview.Clear();
                     foreach (var story in response.Models)
                     {
-                        history.Add(story);
+                        Hview.Add(story);
                     }
                 }
                 else

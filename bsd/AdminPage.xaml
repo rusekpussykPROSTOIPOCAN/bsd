@@ -5,17 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bsd"
         mc:Ignorable="d"
-        Title="AdminPage" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+        Title="AdminPage" Height="385" Width="285">
+    <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
-        
+        <Button  Margin="5" Grid.Row="0" Content="Добавить книгу"/>
+        <Button  Margin="5" Grid.Row="1" Content="Импортировать список книг из excel"/>
+        <Button Margin="5" Grid.Row="2" Content="Удалить книгу"/>
     </Grid>
 </Window>
