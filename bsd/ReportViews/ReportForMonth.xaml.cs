@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static Supabase.Postgrest.Constants;
 
 namespace bsd.ReportViews
 {
@@ -22,13 +23,16 @@ namespace bsd.ReportViews
     public partial class ReportForMonth : UserControl
     {
         public static ObservableCollection<BooksBase> TopThreeBooksInMonth { get; set; } = new ObservableCollection<BooksBase>();
-        public static ObservableCollection<Readers> TopThreeReadersInMonth { get; set; } = new ObservableCollection<Readers>();
+        public static ObservableCollection<ReaderWithCount>? TopThreeReadersInMonth { get; set; } = new ObservableCollection<ReaderWithCount>();
         public static int CountBooksInMonth { get; set; }
         public ReportForMonth()
         {
             InitializeComponent();
+            DataContext = this;
+            LoadThreeReaders();
             LoadLib();
             TopsBooks();
+            SetCountBooks(TextBoxForCountBooksInMonth);
         }
 
         public async static void TopsBooks()
@@ -41,32 +45,59 @@ namespace bsd.ReportViews
                 TopThreeBooksInMonth.Add(item);
             }
         }
-        public async static void TopsReaders()
-        {
-            var historyResponse = await App.SupabaseClient.From<History>().Select("id_reader").Get();
-            var readerCounts = historyResponse.Models.GroupBy(h => h.id_reader).Select(g => new { ReaderId = g.Key, Count = g.Count() }).OrderByDescending(x => x.Count).Take(3).ToList();
-            foreach (var readerCount in readerCounts)
-            {
-                var readerResponse = await App.SupabaseClient.From<Readers>().Where(r => r.Id == readerCount.ReaderId).Get();
 
-                if (readerResponse.Models.Any())
+        private static async void LoadThreeReaders()
+        {
+            await LoadTopThreeReadersForCurrentMonth();
+        }
+
+       private static async Task LoadTopThreeReadersForCurrentMonth()
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                DateTime startDate = new DateTime(now.Year, now.Month, 1);
+                DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+                var historyResponse = await App.SupabaseClient.From<History>().Select("id_reader, DateOfIssueOrBooking").Filter("DateOfIssueOrBooking", Operator.GreaterThanOrEqual, startDate.ToString("yyyy-MM-dd")).Filter("DateOfIssueOrBooking", Operator.LessThanOrEqual, endDate.ToString("yyyy-MM-dd")).Get();
+                var readerCounts = historyResponse.Models.Where(h => h.id_reader.HasValue && h.DateOfIssueOrBooking.HasValue).GroupBy(h => h.id_reader.Value).Select(g => new { ReaderId = g.Key, Count = g.Count() }).OrderByDescending(x => x.Count).Take(3).ToList();
+                var topReadersList = new ObservableCollection<ReaderWithCount>();
+                TopThreeReadersInMonth.Clear();
+                foreach (var readerCount in readerCounts)
                 {
-                    var reader = readerResponse.Models.First();
-                    TopThreeReadersInMonth.Add(new Readers
+                    var readerResponse = await App.SupabaseClient.From<Readers>().Where(r => r.Id == readerCount.ReaderId).Get();
+                    if (readerResponse.Models.Any())
                     {
-                        Id = reader.Id,
-                        Fname = reader.Fname,
-                        Lname = reader.Lname,
-                    });
+                        var reader = readerResponse.Models.First();
+                        TopThreeReadersInMonth.Add(new ReaderWithCount
+                        {
+                            Id = reader.Id,
+                            FirstName = reader.Fname,
+                            LastName = reader.Lname,
+                            Count = readerCount.Count
+                        });
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при загрузке списка пользователей: {ex.Message}");
             }
         }
 
-        //public async static void SetCountBooks(TextBox TextBoxForCountBooksInMonth)
-        //{
-        //    var historyResponseBook = await App.SupabaseClient.From<History>().Select("DateOfIssueOrBooking").Where(x => x.DateOfIssueOrBooking.Month == DateTime.Now.Month).Get();
-        //    TextBoxForCountBooksInMonth.Text = historyResponseBook.Models.Count.ToString();
-        //} Исправляй короче
+        public async static void SetCountBooks(TextBox TextBoxForCountBooksInMonth)
+        {
+            DateTime now = DateTime.Now;
+            DateTime startDate = new DateTime(now.Year, now.Month, 1);
+            DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+            var historyResponse = await App.SupabaseClient
+            .From<History>()
+            .Select("id")
+            .Filter("DateOfIssueOrBooking", Operator.GreaterThanOrEqual, startDate.ToString("yyyy-MM-dd"))
+            .Filter("DateOfIssueOrBooking", Operator.LessThanOrEqual, endDate.ToString("yyyy-MM-dd"))
+            .Get();
+
+            TextBoxForCountBooksInMonth.Text = historyResponse.Models.Count.ToString();
+        }
 
         private async void LoadLib()
         {

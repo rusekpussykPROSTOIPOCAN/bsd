@@ -32,7 +32,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Column="0" Grid.RowSpan="3" Background="DarkGray"/>
         <ComboBox x:Name="FormComboBox" SelectionChanged="FormComboBox_SelectionChanged" Grid.Row="0" />
-        <Button Content="Печать" Grid.Row="1"/>
+        <Button Click="Button_Click" Content="Печать" Grid.Row="1"/>
         <Grid x:Name="SampleReport" Grid.Column="2" Grid.RowSpan="3">
             <local1:ReportForDay x:Name="Form1" Visibility="Collapsed"/>
             <local1:ReportForMonth x:Name="Form2" Visibility="Collapsed"/>
