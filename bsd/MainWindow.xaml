@@ -38,7 +38,7 @@
         <TextBox x:Name="Log" />
         <Label Content="Pass"  />
         <TextBox  x:Name="Pass"/>
-        <Button  Content="Start session" Click="Button_Click"/>
+        <Button Content="Start session" Click="Button_Click"/>
   
     </StackPanel>
 </Window>

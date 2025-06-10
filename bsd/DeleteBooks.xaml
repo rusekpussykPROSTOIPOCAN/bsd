@@ -1,0 +1,27 @@
+﻿<Window x:Class="bsd.DeleteBooks"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+          xmlns:viewmodel="clr-namespace:bsd.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:BookDeliveryViewModel}"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bsd"
+        mc:Ignorable="d"
+        Title="DeleteBooks" Height="450" Width="679">
+   
+    <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="4">
+
+        <DataGrid SelectionMode="Single" x:Name="BooksSelect" MouseDoubleClick="BooksSelect_MouseDoubleClick"  ItemsSource="{Binding books}" IsReadOnly="True" CanUserSortColumns="True" AutoGenerateColumns="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Autor" Binding="{Binding Autor}"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Year" Binding="{Binding Year}"/>
+                <DataGridTextColumn Header="Chapter" Binding="{Binding Chapter}"/>
+                <DataGridTextColumn Header="InventaryNum" Binding="{Binding InventaryNum}"/>
+                <DataGridTextColumn Header="Condition" Binding="{Binding condition}"/>
+                <DataGridTextColumn Header="CountBooking" Binding="{Binding CountBooking}"/>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

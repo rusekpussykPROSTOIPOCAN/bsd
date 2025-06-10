@@ -1,0 +1,56 @@
+﻿<Window x:Class="bsd.AddBook"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewmodel="clr-namespace:bsd.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:BookDeliveryViewModel}"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:xc="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bsd"
+        mc:Ignorable="d"
+        Title="AddBook" Height="464" Width="340">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            
+        </Style>
+        <Style TargetType="xc:MaskedTextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Label Content="Автор"/>
+        <TextBox  x:Name="Autor"/>
+        <Label Content="Название"/>
+        <TextBox x:Name="Title"/>
+        <Label Content="Дата издания"/>
+        <xc:MaskedTextBox Mask="00/00/0000" x:Name="Year" />
+  
+        <Label Content="Инвентарный номер"/>
+        <TextBox x:Name="InvNum"/>
+        
+        <Label Content="Раздел"/>
+        <TextBox x:Name="Chapter"/>
+       
+        <Label Content="ISBN"/>
+
+        <xc:MaskedTextBox Mask="0000000000000" x:Name="ISBN"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        <Button  Click="Button_Click_1" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Выйти"/>
+            <Button Grid.Column="1" Click="Button_Click" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Добавить"/>
+        </Grid>
+    </StackPanel>
+
+</Window>
