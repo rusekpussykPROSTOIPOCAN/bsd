@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:bsd"
         xmlns:viewmodel="clr-namespace:bsd.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:BookDeliveryViewModel}"
         mc:Ignorable="d"
-        Title="AddBooksFromExcel" Height="450" Width="373">
+        Title="AddBooksFromExcel" Height="123" Width="373">
     <Window.Resources>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" x:Key="Brush">
             <GradientStop Offset="0" Color="LightCyan"/>
@@ -22,8 +22,10 @@
 
         </Style>
     </Window.Resources>
-    <StackPanel Margin="20">
-        <Button Content="Шаблон документа"/>
+    <StackPanel VerticalAlignment="Center" >
+        <TextBlock HorizontalAlignment="Center">
+            <Hyperlink NavigateUri="https://aiglbkpynfwjrxmgonmy.supabase.co/storage/v1/object/public/exel//bps.xltx">Скачать шаблон</Hyperlink>
+        </TextBlock>
         <Button Content="Выбрать файл" Command="{Binding GetBooksFromExelCommand}"/>
     </StackPanel>
 </Window>

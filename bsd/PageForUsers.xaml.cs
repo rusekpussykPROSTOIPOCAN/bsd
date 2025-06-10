@@ -63,7 +63,7 @@ namespace bsd
                 }
                 else if (MessageBox.Show("Хотите оформить бронь книги на 7 дней?", "Окно бронирования", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    if (selectedItem.condition != "Свободно")
+                    if (selectedItem.condition != "Свободна")
                     {
                         MessageBox.Show("Книга занята!");
                     }

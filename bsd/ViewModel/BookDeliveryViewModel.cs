@@ -89,7 +89,7 @@ namespace bsd.ViewModel
                     {
                         continue;
                     }
-                    for (global::System.Int32 i = 0; i < c.LastCellNum; i += 6)
+                    for (global::System.Int32 i = 0; i < c.LastCellNum; i += 5)
                     {
                         ICell cell = c.GetCell(i);
                         if (cell == null) { continue; }
@@ -101,8 +101,7 @@ namespace bsd.ViewModel
                             Year = DateOnly.Parse(GetCellValue(c.GetCell(i + 2))),
                             Chapter = GetCellValue(c.GetCell(i + 3)),
                             InventaryNum = GetCellValue(c.GetCell(i + 4)),
-                            condition = GetCellValue(c.GetCell(i + 5)),
-                            ISBN = GetCellValue(c.GetCell(i + 6))
+                            ISBN = GetCellValue(c.GetCell(i + 5))
                         };
                         await App.SupabaseClient.From<BooksBase>().Insert(model);
                         i++;
@@ -137,6 +136,8 @@ namespace bsd.ViewModel
                     return string.Empty;
             }
         }
+       
+
         public static async void LoadBooks()
         {
             try
@@ -268,7 +269,7 @@ namespace bsd.ViewModel
         }
 
         [RelayCommand]
-        private void LendBook()
+        private async Task LendBook()
         {
             if(SelectedBook != null && SelectedReaders != null)
             {
@@ -281,11 +282,45 @@ namespace bsd.ViewModel
                 };
                 int currentCountBooking = SelectedBook.CountBooking;
                 int updateCountBooking = currentCountBooking + 1;
-                App.SupabaseClient.From<History>().Insert(model);
-                App.SupabaseClient.From<BooksBase>().Where(x=>x.Id==SelectedBook.Id).Set(x=>x.CountBooking, updateCountBooking).Update();
-                MessageBox.Show($"{SelectedBook.Title} выдано пользователю: {SelectedReaders.Fname} {SelectedReaders.Lname}");
-                SelectedBook = null;
-                SelectedReaders = null;
+                await App.SupabaseClient.From<History>().Insert(model);
+                var hus = await App.SupabaseClient.From<History>().Where(x => x.id_reader == SelectedReaders.Id && x.id_book == SelectedBook.Id ).Get();
+                if (SelectedBook.condition != "Занята" )
+                {
+                    if(SelectedBook.condition != "Свободна")
+                        foreach (var item in hus.Models)
+                    {
+                    if (item.BookingOrExtradition )
+                    {
+                        await App.SupabaseClient.From<BooksBase>().Where(x => x.Id == SelectedBook.Id).Set(x => x.CountBooking, updateCountBooking).Update();
+                        await App.SupabaseClient.From<BooksBase>().Where(x => x.Id == SelectedBook.Id).Set(x => x.condition, "Занята").Update();
+                        MessageBox.Show($"{SelectedBook.Title} выдано пользователю: {SelectedReaders.Fname} {SelectedReaders.Lname}");
+                        SelectedBook = null;
+                        SelectedReaders = null;
+                                LoadBooks();
+                            break;
+                    }
+                        
+                    else
+                    {
+                        MessageBox.Show("Книга забронированна другим пользователем");
+                                break;
+                    }
+                    }
+                    else
+                    {
+                        await App.SupabaseClient.From<BooksBase>().Where(x => x.Id == SelectedBook.Id).Set(x => x.CountBooking, updateCountBooking).Update();
+                        await App.SupabaseClient.From<BooksBase>().Where(x => x.Id == SelectedBook.Id).Set(x => x.condition, "Занята").Update();
+                        MessageBox.Show($"{SelectedBook.Title} выдано пользователю: {SelectedReaders.Fname} {SelectedReaders.Lname}");
+                        SelectedBook = null;
+                        SelectedReaders = null;
+                        LoadBooks();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Книга выдана");
+                }
             }
             else
             {
