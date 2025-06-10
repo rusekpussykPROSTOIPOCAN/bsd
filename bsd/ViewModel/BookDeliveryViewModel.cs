@@ -21,6 +21,7 @@ namespace bsd.ViewModel
 {
     partial class BookDeliveryViewModel : ObservableObject
     {
+        public static bool check;
         public static ObservableCollection<BooksBase> books { get; set; } = new ObservableCollection<BooksBase>();
         public static ObservableCollection<BooksBase> _allB { get; set; } = new ObservableCollection<BooksBase>();
         public static ObservableCollection<Readers> readers { get; set; } = new ObservableCollection<Readers>();

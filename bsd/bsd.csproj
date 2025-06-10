@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="aaaaaaaaaaaa\**" />
     <Compile Remove="Style\**" />
+    <EmbeddedResource Remove="aaaaaaaaaaaa\**" />
     <EmbeddedResource Remove="Style\**" />
+    <None Remove="aaaaaaaaaaaa\**" />
     <None Remove="Style\**" />
+    <Page Remove="aaaaaaaaaaaa\**" />
     <Page Remove="Style\**" />
   </ItemGroup>
 
@@ -26,10 +30,6 @@
     <PackageReference Include="NPOI" Version="2.7.3" />
 
     <PackageReference Include="Supabase" Version="1.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="aaaaaaaaaaaa\" />
   </ItemGroup>
 
 </Project>
