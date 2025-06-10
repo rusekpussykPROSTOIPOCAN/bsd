@@ -227,7 +227,7 @@ namespace bsd.ViewModel
             {
                 Console.WriteLine("");
             }
-        }
+        }     
         public async static void User(TextBox Name, TextBox LastName, TextBox Pass, TextBox Email, TextBox SerNum,string sex ,TextBox Whom, TextBox Code, TextBox DateV)
         {
           
