@@ -211,6 +211,7 @@ namespace bsd.ViewModel
         {
             try
             {
+                
                 var response = await App.SupabaseClient.From<Readers>().Get();
                 if (response != null && response.Models != null)
                 {

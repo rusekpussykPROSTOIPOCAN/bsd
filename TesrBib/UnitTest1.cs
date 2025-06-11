@@ -68,6 +68,15 @@ namespace TesrBib
             Assert.NotNull(bse);
              SupabaseClient.From<Readers>().Where(x => x.Email == Email.Text).Delete();
         }
-
+      
+        public void BibVieT3()
+        {
+            App.start();
+            BookDeliveryViewModel.LoadReaders();
+            foreach (var item in BookDeliveryViewModel._allR)
+            {
+                Console.WriteLine(item.Email);
+            }
+        }
     }
 }
