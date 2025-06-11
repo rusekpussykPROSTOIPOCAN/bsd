@@ -19,7 +19,7 @@ using System.Windows.Controls;
 
 namespace bsd.ViewModel
 {
-    partial class BookDeliveryViewModel : ObservableObject
+   public partial class BookDeliveryViewModel : ObservableObject
     {
         public static bool check;
         public static ObservableCollection<BooksBase> books { get; set; } = new ObservableCollection<BooksBase>();
@@ -41,6 +41,7 @@ namespace bsd.ViewModel
         }
         public static void AddBooks(TextBox Autor, TextBox Title, TextBox Year,TextBox InvNum, TextBox Chapter, TextBox ISBN)
         {
+
             var model = new BooksBase
             {
                 Autor = Autor.Text,
@@ -50,6 +51,7 @@ namespace bsd.ViewModel
                 Chapter = Chapter.Text,
                 ISBN = ISBN.Text
             };
+
             App.SupabaseClient.From<BooksBase>().Insert(model);
         }
         public async static void Tops()
