@@ -6,16 +6,13 @@
         xmlns:local="clr-namespace:bsd"
         xmlns:viewmodel="clr-namespace:bsd.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:BookDeliveryViewModel}"
         mc:Ignorable="d"
+         WindowStartupLocation="CenterScreen"
+ ResizeMode="NoResize"
         Title="AddBooksFromExcel" Height="123" Width="373">
     <Window.Resources>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" x:Key="Brush">
-            <GradientStop Offset="0" Color="LightCyan"/>
-            <GradientStop Offset="0.5" Color="LightBlue"/>
-            <GradientStop Offset="1" Color="LightCyan"/>
-        </LinearGradientBrush>
+        
         <Style TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource Brush}"/>
-            <Setter Property="BorderBrush" Value="LightSeaGreen"/>
+            
             <Setter Property="Width" Value="AUTO"/>
 
             <Setter Property="Margin" Value="5"/>
@@ -26,6 +23,13 @@
         <TextBlock HorizontalAlignment="Center">
             <Hyperlink NavigateUri="https://aiglbkpynfwjrxmgonmy.supabase.co/storage/v1/object/public/exel//bps.xltx">Скачать шаблон</Hyperlink>
         </TextBlock>
-        <Button Content="Выбрать файл" Command="{Binding GetBooksFromExelCommand}"/>
+        <Button Background="#4361EE"
+ Foreground="White"
+ BorderBrush="Transparent"
+ FontSize="14"
+ FontWeight="SemiBold"
+ Height="30"
+ Margin="5"
+ Cursor="Hand" Content="Выбрать файл" Command="{Binding GetBooksFromExelCommand}"/>
     </StackPanel>
 </Window>

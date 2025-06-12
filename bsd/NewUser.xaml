@@ -6,43 +6,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bsd"
         mc:Ignorable="d"
-        
+         WindowStartupLocation="CenterScreen"
         Title="NewUser" Height="406" Width="779">
     <Window.Resources>
 
-        <Style TargetType="Label">
-            <Setter Property="Background" Value="LightGray"/>
-            <Setter Property="Foreground" Value="DarkSlateGray"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
+        <DropShadowEffect x:Key="ShadowEffect" 
+              BlurRadius="20" 
+              ShadowDepth="5" 
+              Opacity="0.2"/>
 
-        </Style>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" x:Key="Brush">
-            <GradientStop Offset="0" Color="LightCyan"/>
-            <GradientStop Offset="0.5" Color="LightBlue"/>
-            <GradientStop Offset="1" Color="LightCyan"/>
-        </LinearGradientBrush>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource Brush}"/>
-            <Setter Property="BorderBrush" Value="LightSeaGreen"/>
-            <Setter Property="Width" Value="AUTO"/>
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="Margin" Value="5"/>
-        </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="MaxLength" Value="40"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="MaxLength" Value="50"/>
-            <Setter Property="MaxWidth" Value="200"/>
-        </Style>
+
+
         <Style TargetType="xc:MaskedTextBox">
+
+            <Setter Property="Foreground" Value="#212529"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style  TargetType="TextBox">
+
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Height" Value="20"/>
             <Setter Property="MaxLength" Value="40"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="MaxLength" Value="40"/>
-            <Setter Property="MaxWidth" Value="200"/>
+            <Setter Property="BorderBrush" Value="#CED4DA"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#212529"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#4361EE"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#4361EE"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
+
+
+        <Style TargetType="Label">
+       
+            
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="LightSlateGray"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#4361EE"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
     </Window.Resources>
     <Grid Margin="10" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>

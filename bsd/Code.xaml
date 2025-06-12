@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bsd"
         mc:Ignorable="d"
+         WindowStartupLocation="Manual"
         Title="Code" Height="230" Width="245">
     <Grid>
         <Image x:Name="BarCodesd" />

@@ -5,20 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bsd"
         mc:Ignorable="d"
+         WindowStartupLocation="CenterScreen"
         Title="AdminPage" Height="385" Width="285">
     <Window.Resources>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" x:Key="Brush">
-            <GradientStop Offset="0" Color="LightCyan"/>
-            <GradientStop Offset="0.5" Color="LightBlue"/>
-            <GradientStop Offset="1" Color="LightCyan"/>
-        </LinearGradientBrush>
         <Style TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource Brush}"/>
-            <Setter Property="BorderBrush" Value="LightSeaGreen"/>
-            <Setter Property="Width" Value="AUTO"/>
-          
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#4361EE"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Margin" Value="5"/>
-            
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
         </Style>
     </Window.Resources>
     

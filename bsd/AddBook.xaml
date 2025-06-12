@@ -7,25 +7,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bsd"
         mc:Ignorable="d"
-        Title="AddBook" Height="464" Width="340">
+         WindowStartupLocation="CenterScreen"
+        Title="AddBook" Height="505" Width="340">
     <Window.Resources>
-        <Style TargetType="Label">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-        </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Width" Value="300"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            
-        </Style>
+        
+            <DropShadowEffect x:Key="ShadowEffect" 
+                BlurRadius="20" 
+                ShadowDepth="5" 
+                Opacity="0.2"/>
+
+      
+       
         <Style TargetType="xc:MaskedTextBox">
+            
+            <Setter Property="Foreground" Value="#212529"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Width" Value="300"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
-    </Window.Resources>
+
+        <Style  TargetType="TextBox">
+          
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="20"/>
+                <Setter Property="MaxLength" Value="40"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="BorderBrush" Value="#CED4DA"/>
+                <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="#212529"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="BorderBrush" Value="#4361EE"/>
+                    </Trigger>
+                    <Trigger Property="IsFocused" Value="True">
+                        <Setter Property="BorderBrush" Value="#4361EE"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+
+            <Style TargetType="Label">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="LightSlateGray"/>
+            </Style>
+
+            <Style TargetType="Button">
+                
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Style.Resources>
+                <Setter Property="Background" Value="#4361EE"/>
+                <Setter Property="Foreground" Value="WhiteSmoke"/>
+            
+            <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Style>
+
+        </Window.Resources>
+       
+   
     <StackPanel>
         <Label Content="Автор"/>
         <TextBox  x:Name="Autor"/>
@@ -45,11 +98,11 @@
         <xc:MaskedTextBox Mask="0000000000000" x:Name="ISBN"/>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-        <Button  Click="Button_Click_1" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Выйти"/>
-            <Button Grid.Column="1" Click="Button_Click" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Добавить"/>
+        <Button  Click="Button_Click_1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Выйти"/>
+            <Button Grid.Column="1" Click="Button_Click"  VerticalAlignment="Center" HorizontalAlignment="Center" Content="Добавить"/>
         </Grid>
     </StackPanel>
 

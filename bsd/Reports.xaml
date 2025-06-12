@@ -5,20 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bsd" xmlns:local1="clr-namespace:bsd.ReportViews"
         mc:Ignorable="d"
+         WindowStartupLocation="CenterScreen"
         Title="Создание отчета" Height="450" Width="600">
     <Window.Resources>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" x:Key="Brush">
-            <GradientStop Offset="0" Color="LightCyan"/>
-            <GradientStop Offset="0.5" Color="LightBlue"/>
-            <GradientStop Offset="1" Color="LightCyan"/>
-        </LinearGradientBrush>
+        <DropShadowEffect x:Key="ShadowEffect" 
+                BlurRadius="20" 
+                ShadowDepth="5" 
+                Opacity="0.2"/>
+
+
+        <Style  TargetType="TextBox">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="MaxLength" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderBrush" Value="#CED4DA"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#212529"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#4361EE"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#4361EE"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style TargetType="Label">
+            <Setter Property="Background" Value="#4361EE"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
         <Style TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource Brush}"/>
-            <Setter Property="BorderBrush" Value="LightSeaGreen"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#4361EE"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Width" Value="AUTO"/>
             <Setter Property="Height" Value="20"/>
             <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
         </Style>
+
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,7 +66,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="0" Grid.RowSpan="3" Background="DarkGray"/>
+        <Grid Grid.Column="0" Grid.RowSpan="3" Background="LightGray"/>
         <ComboBox x:Name="FormComboBox" SelectionChanged="FormComboBox_SelectionChanged" Grid.Row="0" />
         <Button Click="Button_Click" Content="Печать" Grid.Row="1"/>
         <Grid x:Name="SampleReport" Grid.Column="2" Grid.RowSpan="3">
