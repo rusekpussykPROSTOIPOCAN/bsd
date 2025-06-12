@@ -58,7 +58,7 @@ namespace TesrBib
             TextBox Pass = new TextBox() { Text = "Culebaka" };
             TextBox Email = new TextBox() { Text = "Culebaka" };
             TextBox SerNum = new TextBox() { Text = "3246987438" };
-            string sex = "Ì";
+            string sex = "ï¿½";
             TextBox Whom = new TextBox() { Text = "Culebaka" };
             TextBox Code = new TextBox() { Text = "500-300" };
             TextBox DateV = new TextBox() { Text = "2000-12-09" };

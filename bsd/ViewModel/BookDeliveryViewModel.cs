@@ -54,7 +54,7 @@ namespace bsd.ViewModel
 
             App.SupabaseClient.From<BooksBase>().Insert(model);
         }
-        public async static void Tops()
+        public async static Task Tops()
         {
             var topbooksGet = await App.SupabaseClient.From<BooksBase>().Order(x => x.CountBooking, ordering: Supabase.Postgrest.Constants.Ordering.Descending).Limit(50).Get();
 
@@ -115,7 +115,7 @@ namespace bsd.ViewModel
             {
                 MessageBox.Show("Проверьте формат данных");
             }
-            LoadBooks();
+           await LoadBooks();
             MessageBox.Show("Готово");
 
 
@@ -141,7 +141,7 @@ namespace bsd.ViewModel
         }
        
 
-        public static async void LoadBooks()
+        public static async Task LoadBooks()
         {
             try
             {
@@ -167,12 +167,12 @@ namespace bsd.ViewModel
             }
         }
 
-        public static void SearchBook(TextBox Search)
+        public static async Task SearchBook(TextBox Search)
         {
 
             if (string.IsNullOrWhiteSpace(Search.Text))
             {
-                LoadBooks();
+               await LoadBooks();
             }
             else
             {
@@ -207,7 +207,7 @@ namespace bsd.ViewModel
             }
         }
 
-        public static async void LoadReaders()
+        public static async Task LoadReaders()
         {
             try
             {
@@ -233,7 +233,7 @@ namespace bsd.ViewModel
                 Console.WriteLine("");
             }
         }     
-        public async static void User(TextBox Name, TextBox LastName, TextBox Pass, TextBox Email, TextBox SerNum,string sex ,TextBox Whom, TextBox Code, TextBox DateV)
+        public async static Task User(TextBox Name, TextBox LastName, TextBox Pass, TextBox Email, TextBox SerNum,string sex ,TextBox Whom, TextBox Code, TextBox DateV)
         {
           
             try
@@ -300,7 +300,7 @@ namespace bsd.ViewModel
                         MessageBox.Show($"{SelectedBook.Title} выдано пользователю: {SelectedReaders.Fname} {SelectedReaders.Lname}");
                         SelectedBook = null;
                         SelectedReaders = null;
-                                LoadBooks();
+                             await   LoadBooks();
                             break;
                     }
                         
@@ -317,7 +317,7 @@ namespace bsd.ViewModel
                         MessageBox.Show($"{SelectedBook.Title} выдано пользователю: {SelectedReaders.Fname} {SelectedReaders.Lname}");
                         SelectedBook = null;
                         SelectedReaders = null;
-                        LoadBooks();
+                       await LoadBooks();
                     }
 
                 }
