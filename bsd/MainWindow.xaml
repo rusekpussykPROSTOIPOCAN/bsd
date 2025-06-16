@@ -22,7 +22,7 @@
 
 
             <StackPanel Margin="30" VerticalAlignment="Center">
-                <!-- Заголовок -->
+               
                 <TextBlock Text="Добро пожаловать"
                            FontSize="24"
                            FontWeight="SemiBold"
@@ -48,8 +48,8 @@
                            Margin="5,15,0,5"
                            FontSize="14"/>
 
-                <TextBox x:Name="Pass"
-                            
+                <PasswordBox x:Name="Pass"
+                     
                              Height="40"
                              FontSize="14"
                              Padding="10"/>

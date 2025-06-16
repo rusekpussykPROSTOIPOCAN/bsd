@@ -30,7 +30,7 @@ namespace bsd
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             string log = Log.Text;
-            string pass = Pass.Text;
+            string pass = Pass.Password;
            
                 var dataU = await App.SupabaseClient.From<Readers>().Where(x => x.Pass == pass && x.Email == log).Get();
                 var u = dataU.Models;
